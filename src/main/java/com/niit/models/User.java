@@ -6,8 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+
 
 @Component
 @Entity
@@ -16,7 +20,7 @@ public class User extends BaseDomain {
 	
 	@Id
 	@Column(name="USERID")
-	private String userid;
+	private String id;
 	
 	@Column(name="EMAIL")
 	private String email;
@@ -39,19 +43,22 @@ public class User extends BaseDomain {
 	@Column(name="gender")
 	private String gender;
 	
-	@Column(name="profilepic")
-	private String profilepic;
-	
 	@Column(name="ISONLINE")
-	private char isOnline;
+	private Character isOnline;
 	
+	@Column(name="profilepic")
+	private String imagepath;
+
+	@Transient
+	private MultipartFile file; 
 	
-	public String getUserid() {
-		return userid;
+
+	public String getId() {
+		return id;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -110,20 +117,30 @@ public class User extends BaseDomain {
 		this.gender = gender;
 	}
 
-	public String getProfilepic() {
-		return profilepic;
-	}
-
-	public void setProfilepic(String profilepic) {
-		this.profilepic = profilepic;
-	}
-
-	public char getIsOnline() {
+		public Character getIsOnline() {
 		return isOnline;
 	}
 
-	public void setIsOnline(char isOnline) {
+	public void setIsOnline(Character isOnline) {
 		this.isOnline = isOnline;
-	}				
+	}
+
+	public String getImagepath() {
+		return imagepath;
+	}
+
+	public void setImagepath(String imagepath) {
+		this.imagepath = imagepath;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+		
 }
 

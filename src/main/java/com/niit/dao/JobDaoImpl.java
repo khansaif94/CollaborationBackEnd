@@ -22,8 +22,9 @@ public class JobDaoImpl implements JobDao{
 		{
 				Session session =sessionFactory.openSession();
 				int newidno =session.createQuery("from Job").list().size()+1;
-				String id ="U"+newidno;
-				job.setJobid(id);
+				String id ="SK"+newidno;
+				job.setPostdate(new java.util.Date());
+				job.setId(id);
 				session.save(job);
 				session.flush();
 				session.close();

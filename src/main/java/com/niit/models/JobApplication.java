@@ -1,5 +1,7 @@
 package com.niit.models;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,6 +15,9 @@ import org.springframework.stereotype.Component;
 public class JobApplication extends BaseDomain {
 	
 	@Id
+	@Column(name="JOBAPPLN_ID")
+	private String id;
+	
 	@Column(name="JOB_ID")
 	private String jobid;
 	
@@ -20,12 +25,30 @@ public class JobApplication extends BaseDomain {
 	private String userid;
 	
 	@Column(name="APPLIED_DATA")
-	private String applieddata;
+	private Date applieddate;
 	
 	@Column(name="STATUS")
 	private String status;
-
 	
+	@Column(name="REASON")
+	private String reason;
+	
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getJobid() {
 		return jobid;
 	}
@@ -42,12 +65,12 @@ public class JobApplication extends BaseDomain {
 		this.userid = userid;
 	}
 
-	public String getApplieddata() {
-		return applieddata;
+	public Date getApplieddate() {
+		return applieddate;
 	}
 
-	public void setApplieddata(String applieddata) {
-		this.applieddata = applieddata;
+	public void setApplieddate(Date applieddate) {
+		this.applieddate = applieddate;
 	}
 
 	public String getStatus() {

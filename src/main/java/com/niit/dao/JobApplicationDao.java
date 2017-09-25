@@ -6,11 +6,14 @@ import com.niit.models.JobApplication;
 
 public interface JobApplicationDao {
 
-	boolean saveJobApplication(JobApplication jobapplication);
+	
+	 JobApplication get(String id);
+	 
+	 public List<JobApplication> list();
+	
+	 List<JobApplication> getAlljobapplication(String userid);
 
-	List<JobApplication> getAlljobapplication();
-
-	JobApplication getJobApplicationById(String id);
+	 boolean save(JobApplication jobapplication);
 	
 	 boolean updateJobApplication(JobApplication jobapplication);
 	

@@ -39,7 +39,7 @@ public class UserDAOTestCase {
 	@Test
 	public void createUserTestCase()
 	{
-		user.setUserid("U008");
+		user.setId("U008");
 		
 		user.setEmail("xyz@gmail.com");
 		user.setUserrole("role");
@@ -53,7 +53,7 @@ public class UserDAOTestCase {
 	public void updateUserTestCase()
 	{
 		
-		user.setUserid("U008");
+		user.setId("U008");
 		
 		user.setEmail("xyz@gmail.com");
 		user.setUserrole("role");
@@ -67,7 +67,7 @@ public class UserDAOTestCase {
 	@Test
     public void deleteUser()
     {
-		user.setUserid("SK6547");
+		user.setId("SK6547");
  	   
  	   boolean flag = userDao.deleteUser(user);
  	   

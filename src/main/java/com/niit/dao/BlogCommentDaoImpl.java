@@ -1,6 +1,8 @@
 package com.niit.dao;
 
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -23,6 +25,10 @@ public class BlogCommentDaoImpl implements BlogCommentDao{
 		try
 		{
 				Session session =sessionFactory.openSession();
+				String newidno =UUID.randomUUID().toString().substring(24).toUpperCase();
+				String id =("Bcmnt"+newidno).substring(0, 9);
+				blogcomment.setId(id);
+				System.out.println();
 				session.save(blogcomment);
 				session.flush();
 				session.close();
@@ -38,10 +44,10 @@ public class BlogCommentDaoImpl implements BlogCommentDao{
 	}
 
 	
-	public List<BlogComment> getAllBlogComment() {
+	public List<BlogComment> getAllBlogComment(String blogid) {
 		
 		Session  session=sessionFactory.openSession();
-		Query query=session.createQuery("from BlogComment");
+		Query query=session.createQuery(" from BlogComment where blogid='"+blogid+"'");
 		List<BlogComment> blogcommentList=query.list();
 		session.close();
 		return blogcommentList;

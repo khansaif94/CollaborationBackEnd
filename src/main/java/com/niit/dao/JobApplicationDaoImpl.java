@@ -16,12 +16,16 @@ public class JobApplicationDaoImpl implements JobApplicationDao{
 	SessionFactory sessionFactory;
 
 	@Override
-	public boolean saveJobApplication(JobApplication jobapplication) {
+	public boolean save(JobApplication jobApplication) {
 		
 		try
 		{
 				Session session =sessionFactory.openSession();
-				session.save(jobapplication);
+				int newidno =session.createQuery("from JobApplication").list().size()+1;
+				String id ="JA"+newidno;
+				jobApplication.setApplieddate(new java.util.Date());
+				jobApplication.setId(id);
+				session.save(jobApplication);
 				session.flush();
 				session.close();
 		return true;
@@ -35,30 +39,30 @@ public class JobApplicationDaoImpl implements JobApplicationDao{
 	}
 
 	@Override
-	public List<JobApplication> getAlljobapplication() {
+	public List<JobApplication> getAlljobapplication(String userid) {
 		
 		Session  session=sessionFactory.openSession();
-		Query query=session.createQuery("from JobApplication");
-		List<JobApplication> jobapplicationList=query.list();
+		Query query=session.createQuery("from JobApplication where userid='"+ userid +"'");
+		List<JobApplication> jobApplicationList=query.list();
 		session.close();
-		return jobapplicationList;
+		return jobApplicationList;
 	}
 
 	@Override
-	public JobApplication getJobApplicationById(String id) {
+	public JobApplication get(String id) {
 		
 		Session session=sessionFactory.openSession();
-		JobApplication jobapplication=(JobApplication)session.get(JobApplication.class, id);
+		JobApplication jobApplication=(JobApplication)session.get(JobApplication.class, id);
         session.close();
-        return jobapplication;
+        return jobApplication;
 	}
 
 	@Override
-	public boolean updateJobApplication(JobApplication jobapplication) {
+	public boolean updateJobApplication(JobApplication jobApplication) {
 		
 		try {
 			Session session =sessionFactory.openSession();
-			session.update(jobapplication);
+			session.update(jobApplication);
 			session.flush();
 			session.close();
 			return true;
@@ -71,11 +75,11 @@ public class JobApplicationDaoImpl implements JobApplicationDao{
 	}
 
 	@Override
-	public boolean deleteJobApplication(JobApplication jobapplication) {
+	public boolean deleteJobApplication(JobApplication jobApplication) {
 		
 		try {
 			Session session =sessionFactory.openSession();
-			session.delete(jobapplication);
+			session.delete(jobApplication);
 			session.flush();
 			session.close();
 			return true;
@@ -87,4 +91,12 @@ public class JobApplicationDaoImpl implements JobApplicationDao{
 		}
 		
 	}
+
+	@Override
+	public List<JobApplication> list() {
+		return sessionFactory.openSession().createQuery("from JobApplication").list();
+	}
+	
+	
+
 }

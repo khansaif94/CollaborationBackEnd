@@ -8,7 +8,7 @@ public interface BlogCommentDao {
 	
 	boolean saveBlogComment(BlogComment blogcomment);
 
-	List<BlogComment> getAllBlogComment();
+	List<BlogComment> getAllBlogComment(String blogid);
 
 	BlogComment getBlogCommentById(String id);
 	

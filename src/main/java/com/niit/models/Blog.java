@@ -30,11 +30,8 @@ public class Blog extends BaseDomain {
 	@Column(name="DATE_ADDED")
 	private Date date_added;
 	
-	@Column(name="STATUS")
-	private String status;
 	
-	
-	
+
 	public String getId() {
 		return id;
 	}
@@ -76,11 +73,4 @@ public class Blog extends BaseDomain {
 		this.date_added = date_added;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}	
 }

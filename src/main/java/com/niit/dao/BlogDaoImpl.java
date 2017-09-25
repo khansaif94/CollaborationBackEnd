@@ -25,7 +25,7 @@ public class BlogDaoImpl implements BlogDao{
 		{
 				Session session =sessionFactory.openSession();
 				int newidno =session.createQuery("from Blog").list().size()+1;
-				String id ="U"+newidno;
+				String id ="B"+newidno;
 				blog.setId(id);
 				session.save(blog);
 				session.flush();
@@ -66,7 +66,6 @@ public class BlogDaoImpl implements BlogDao{
 			e.printStackTrace();
 			return false;
 		}
-		
 	}
 
 	@Override
@@ -94,8 +93,4 @@ public class BlogDaoImpl implements BlogDao{
 		log.debug("Ending get method"+blog);
 			return blog;
 	}
-
-
-	
-
-	}
+}

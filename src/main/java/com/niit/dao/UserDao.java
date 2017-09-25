@@ -10,6 +10,10 @@ public interface UserDao {
 
 	List<User> getAllUser();
 
+	public User get(String id);
+	
+	public List<User> searchlist(String name);
+	
 	User getUserById(String id);
 	
 	boolean updateUser(User user);
@@ -19,4 +23,8 @@ public interface UserDao {
 	public User isValidate(String email,String password);
 	
 	public void setOnline(String id);
+	
+	public void updateProfilepic(String imagepath, String id);
+
+	public User getUserByName(String nm);
 }

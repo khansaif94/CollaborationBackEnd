@@ -1,5 +1,7 @@
 package com.niit.models;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +17,9 @@ import org.springframework.stereotype.Component;
 public class BlogComment extends BaseDomain {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="BLOGCOMMENT_ID")
+	private String id;
+	
 	@Column(name="BLOG_ID")
 	private String blogid;
 	
@@ -26,7 +30,7 @@ public class BlogComment extends BaseDomain {
 	private String comment;
 	
 	@Column(name="DATE_ADDED")
-	private String date_added;
+	private Date date_added;
 	
 
 	public String getBlogid() {
@@ -53,11 +57,22 @@ public class BlogComment extends BaseDomain {
 		this.comment = comment;
 	}
 
-	public String getDate_added() {
+	
+	
+	public Date getDate_added() {
 		return date_added;
 	}
 
-	public void setDate_added(String date_added) {
+	public void setDate_added(Date date_added) {
 		this.date_added = date_added;
-	}	
-}
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+}	
+

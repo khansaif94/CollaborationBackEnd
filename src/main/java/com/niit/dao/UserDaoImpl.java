@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao{
 				Session session =sessionFactory.openSession();
 				int newidno =session.createQuery("from User").list().size()+1;
 				String id ="U"+newidno;
-				user.setUserid(id);
+				user.setId(id);
 				user.setUserrole("USER");
 				session.save(user);
 				session.flush();
@@ -57,11 +57,25 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public User getUserById(String id) {
 		
-		Session session=sessionFactory.openSession();
+		log.debug("->->Starting of the method getUser");
+		String hql = "from User where id="+"'"+id+"'";
 		
-		User user=(User)session.get(User.class, id);
-        session.close();
-        return user;
+		log.debug("Query is : "+hql);
+		
+		Query query = sessionFactory.openSession().createQuery(hql);
+		
+		@SuppressWarnings("unchecked")
+		List<User> list = (List<User>) query.list();
+		
+		if (!list.isEmpty()) {
+			User u=(User) list.get(0);
+			log.debug("Got:"+u.getName());
+			System.out.println(u.getName());
+			System.out.println(u);
+			return u;
+		}
+		
+		return null;
 	}
 
 	@Override
@@ -114,6 +128,7 @@ public class UserDaoImpl implements UserDao{
 		if (list != null && !list.isEmpty()) {
 			User u=(User) list.get(0);
 			log.debug("Got:"+u.getName());
+		
 			return u;
 		}
 		
@@ -123,12 +138,56 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public void setOnline(String userID) {
 		
-		log.debug("Starting of the metnod setOnline");
+		log.debug("Starting of the method setOnline");
 		String hql =" UPDATE User	SET isOnline = 'Y' where id='" +  userID + "'" ;
 		  log.debug("hql: " + hql);
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		Query query = sessionFactory.openSession().createQuery(hql);
 		query.executeUpdate();
+	
 		log.debug("Ending of the metnod setOnline");
+		
+	}
+
+	@Override
+	public void updateProfilepic(String imagepath, String id) {
+		log.debug("Starting of the method ");
+		String hql =" UPDATE User	SET imagepath='" + imagepath + "' where id='" +  id + "'" ;
+		  log.debug("hql: " + hql);
+		Query query = sessionFactory.openSession().createQuery(hql);
+		query.executeUpdate();
+		
+	}
+
+	@Override
+	public User get(String id) {
+		User userdetails= (User)sessionFactory.openSession().get(User.class, id);
+		return userdetails;
+	}
+
+	@Override
+	public List<User> searchlist(String name) {
+		return sessionFactory.openSession().createQuery("from User where lower(name) like "+"'"+name.toLowerCase()+"'").list();
+	}
+
+	@Override
+	public User getUserByName(String nm) {
+String hql = "from User where name= '" + nm+"'";
+		
+		
+		
+		Query query = sessionFactory.openSession().createQuery(hql);
+		
+		@SuppressWarnings("unchecked")
+		List<User> list = (List<User>) query.list();
+		
+		if (list != null && !list.isEmpty()) {
+			User u=(User) list.get(0);
+			log.debug("Got:"+u.getName());
+		
+			return u;
+		}
+		
+		return null;
 		
 	}	
 }

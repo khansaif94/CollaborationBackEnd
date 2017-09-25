@@ -16,7 +16,7 @@ public class Job extends BaseDomain {
 	
 	@Id
 	@Column(name="JOB_ID")
-	private String jobid;
+	private String id;
 	
 	@Column(name="JOB_TITLE")
 	private String jobtitle;
@@ -24,16 +24,16 @@ public class Job extends BaseDomain {
 	@Column(name="JOB_DESCRIPTION")
 	private String jobdescription;
 	
-	@Column(name="")
+	@Column(name="POSTDATE")
 	private Date postdate;
 	
-
-	public String getJobid() {
-		return jobid;
+	
+	public String getId() {
+		return id;
 	}
 
-	public void setJobid(String jobid) {
-		this.jobid = jobid;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getJobtitle() {

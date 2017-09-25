@@ -47,7 +47,7 @@ public class FriendTestCase {
 		friend.setFriendid("F007");
 		friend.setStatus("N");
 		
-		boolean flag=friendDao.saveFriend(friend);
+		boolean flag=friendDao.save(friend);
 		assertEquals("createFriendTestCase",true,flag);
 	}
 	
@@ -61,7 +61,7 @@ public class FriendTestCase {
 		friend.setStatus("Y");
 		friend.setFriendid("F007");
 		
-		boolean flag=friendDao.updateFriend(friend);
+		boolean flag=friendDao.update(friend);
 		assertEquals("updateFriendTestCase",true,flag);
 		
 	}
@@ -86,11 +86,5 @@ public class FriendTestCase {
 		assertEquals("getFriendTestCase", null,friend);
 	}
 	
-	@Test
-	public void getAllFriendTestCase()
-	{
-		int recordsFromDao =  friendDao.getAllFriend().size();
-	 	  
-	 	  Assert.assertEquals("getAllFriendTestCase" ,2 , recordsFromDao);
-	}
+	
 }

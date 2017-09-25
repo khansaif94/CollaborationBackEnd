@@ -39,7 +39,7 @@ public class JobDAOTestCase {
 	public void createJobTestCase()
 	{
 		
-		job.setJobid("U008");
+		job.setId("U008");
 		job.setJobtitle("IT VACANCY");
 		job.setJobdescription("IT JOB");
 		
@@ -51,7 +51,7 @@ public class JobDAOTestCase {
 	public void updateJobTestCase()
 	{
 		
-		job.setJobid("zmv280");
+		job.setId("zmv280");
 		job.setJobtitle("CORE AUTOMATION");
 		job.setJobdescription("ELECTRONIC CORE JOB");
 		
@@ -63,7 +63,7 @@ public class JobDAOTestCase {
 	@Test
     public void deleteJob()
     {
-		job.setJobid("");
+		job.setId("");
  	   
  	   boolean flag = jobDao.deleteJob(job);
  	   

@@ -43,7 +43,7 @@ public class BlogCommentDAOTestCase {
 		blogComment.setBlogid("F007");
 		blogComment.setUserid("U008");
 		blogComment.setComment("HAHAHA");
-		blogComment.setDate_added("19/03/94");
+		
 		boolean flag=blogCommentDao.saveBlogComment(blogComment);
 		assertEquals("createBlogCommentTestCase",true,flag);
 	}
@@ -56,7 +56,7 @@ public class BlogCommentDAOTestCase {
 		blogComment.setBlogid("XRC001");
 		blogComment.setUserid("H002");
 		blogComment.setComment("YES");
-		blogComment.setDate_added("19/03/94");
+		
 		
 		boolean flag=blogCommentDao.updateBlogComment(blogComment);
 		assertEquals("updateBlogCommentTestCase",true,flag);
@@ -86,7 +86,7 @@ public class BlogCommentDAOTestCase {
 	@Test
 	public void getAllBlogCommentTestCase()
 	{
-		int recordsFromDao =  blogCommentDao.getAllBlogComment().size();
+		int recordsFromDao =  blogCommentDao.getAllBlogComment(null).size();
 	 	  
 	 	  Assert.assertEquals("getAllBlogCommentTestCase" ,1 , recordsFromDao);
 	}
